@@ -4,6 +4,7 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 //import CarouselPizza from "./";
 //import CarouselPizza from "./components/CarouselPizzas";
-import App from "./App";
+//import App from "./App";
+import FormRegistro from "./components/FormRegistro";
 
-ReactDOM.render(<App/>, document.getElementById("root"));
+ReactDOM.render(<FormRegistro/>, document.getElementById("root"));
