@@ -9,7 +9,7 @@ import img3 from "../assets/img3.jpg";
  
 const CarouselPizza = () => {
 	return (
-		<div style={{ display: 'block', width: 1200, height: 640 }}>
+		<div style={{ display: 'block', width: 100}}>
 		
 		<Carousel>
 		  <Carousel.Item interval={1500}>
