@@ -4,14 +4,15 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 const PizzaNav = () => {
 	const history = useHistory();
 	const [usuario, setUsuario] = useState(null);
-	const [carrito, setCarrito] = useState(0);
+	// const [carrito, setCarrito] = useState(0);
+	// localStorage.setItem("cart", JSON.stringify(carrito));
 
 	useEffect(() => {
 		const datos = JSON.parse(localStorage.getItem("auth")) || [];
 		setUsuario(datos.usuario);
 
-		const pedido = JSON.parse(localStorage.getItem("cart")) || [];
-		setCarrito(pedido.carrito);
+		// const pedido = JSON.parse(localStorage.getItem("cart")) || [];
+		// setCarrito(pedido.carrito);
 	}, []);
 
 	const handleClick = () => {
@@ -58,7 +59,7 @@ const PizzaNav = () => {
 								<NavLink
 									className="nav-link"
 									exact
-									to="#"
+									to="/shop"
 									activeStyle={{
 										fontWeight: "bold",
 									}}
@@ -124,7 +125,7 @@ const PizzaNav = () => {
 										{/* <span>{carrito?.total}</span>
 										<br></br>
 										<span>{carrito?.costo}</span> */}
-										{carrito?.total !== 0 && (
+										{/* {carrito?.total !== 0 && (
 											<b>
 												<span>
 													{carrito.total} <span> | </span>
@@ -132,7 +133,7 @@ const PizzaNav = () => {
 													{carrito.costo}
 												</span>
 											</b>
-										)}
+										)} */}
 									</button>
 								</Link>
 							</li>
