@@ -9,12 +9,18 @@ const ShopCard = ({ pizzas }) => {
 		localStorage.setItem("cart", JSON.stringify(pedido));
 	}, [pedido]);
 
-	const savePizza = (e) => {
+	const guardarPizza = (pizza, e) => {
 		e.preventDefault();
-
-		const [{ _id, nombre }] = pizzas;
-		setPedido([...pedido, { id: _id, sabor: nombre }]);
+		setPedido([
+			...pedido,
+			{
+				id: pizza._id,
+				sabor: pizza.nombre,
+				precio: pizza.precio,
+			},
+		]);
 	};
+
 	return (
 		<>
 			<div className="row row-cols-1 row-cols-md-3 g-4">
@@ -32,7 +38,9 @@ const ShopCard = ({ pizzas }) => {
 								<p className="card-text">{pizza.detalle}</p>
 							</div>
 							<div className="card-footer ">
-								<button onClick={savePizza}>agregar al carrito</button>
+								<button onClick={(e) => guardarPizza(pizza, e)}>
+									agregar al carrito
+								</button>
 
 								{pizza.disponible ? (
 									<div className="d-flex justify-content-between align-items-center">
