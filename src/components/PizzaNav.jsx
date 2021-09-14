@@ -3,16 +3,17 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 
 const PizzaNav = () => {
 	const history = useHistory();
-	const [usuario, setUsuario] = useState(null);
-	// const [carrito, setCarrito] = useState(0);
-	// localStorage.setItem("cart", JSON.stringify(carrito));
+	const [usuario, setUsuario] = useState();
+	const [carrito, setCarrito] = useState({});
 
 	useEffect(() => {
-		const datos = JSON.parse(localStorage.getItem("auth")) || [];
+		const datos = JSON.parse(localStorage.getItem("auth")) || {};
 		setUsuario(datos.usuario);
+	}, []);
 
-		// const pedido = JSON.parse(localStorage.getItem("cart")) || [];
-		// setCarrito(pedido.carrito);
+	useEffect(() => {
+		const datos = JSON.parse(localStorage.getItem("cart")) || {};
+		setCarrito(datos);
 	}, []);
 
 	const handleClick = () => {
@@ -122,18 +123,16 @@ const PizzaNav = () => {
 								<Link to="/carrito">
 									<button className="btn btn-color">
 										<i className="fa fa-shopping-cart text-white me-2"></i>
-										{/* <span>{carrito?.total}</span>
-										<br></br>
-										<span>{carrito?.costo}</span> */}
-										{/* {carrito?.total !== 0 && (
+
+										{carrito?.cantidad !== 0 && (
 											<b>
 												<span>
-													{carrito.total} <span> | </span>
+													{carrito.cantidad} <span> | </span>
 													<span>$</span>
 													{carrito.costo}
 												</span>
 											</b>
-										)} */}
+										)}
 									</button>
 								</Link>
 							</li>

@@ -28,11 +28,18 @@ const Shop = () => {
 	return (
 		<div>
 			<PizzaNav />
-			{/* <PizzaCard /> */}
+			<div className="container">
+				<div className="row">
+					<div className="col"></div>
+					<div className="col-12 col-md-10">
+						<ShopCard pizzas={pizzas} />
+					</div>
+				</div>
+			</div>
+
 			<div className="d-flex justify-content-center my-3">
 				<BtnPaginacion pagina={pagina} totPag={totPag} setPagina={setPagina} />
 			</div>
-			<ShopCard pizzas={pizzas} />
 			<PizzaFooter />
 		</div>
 	);
