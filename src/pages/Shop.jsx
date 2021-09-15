@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { getPizzas } from "../helpers/pizza";
 import BtnPaginacion from "../components/BtnPaginacion";
-// import PizzaCard from "../components/PizzaCard";
 import PizzaNav from "../components/PizzaNav";
 import PizzaFooter from "../components/PizzaFooter";
 import ShopCard from "../components/ShopCard";
 
-const Shop = () => {
+const Shop = ({ carrito, setCarrito }) => {
+	// let data = JSON.parse(localStorage.getItem("cart")) || {
+	// 	cantidad: 0,
+	// 	costo: 0,
+	// 	pizzas: [],
+	// };
+	// const [carrito, setCarrito] = useState(data);
 	const [pizzas, setPizzas] = useState([]);
 	const [pagina, setPagina] = useState(0);
 	const [totPag, setTotpag] = useState(0);
-	// console.log(pagina);
+
 	useEffect(() => {
 		getPizzas().then((respuesta) => {
 			// console.log(respuesta);
@@ -27,12 +32,16 @@ const Shop = () => {
 
 	return (
 		<div>
-			<PizzaNav />
+			{/* <PizzaNav carrito={carrito} /> */}
 			<div className="container">
 				<div className="row">
 					<div className="col"></div>
-					<div className="col-12 col-md-10">
-						<ShopCard pizzas={pizzas} />
+					<div className="col-12 col-md-9">
+						<ShopCard
+							pizzas={pizzas}
+							carrito={carrito}
+							setCarrito={setCarrito}
+						/>
 					</div>
 				</div>
 			</div>
@@ -40,7 +49,6 @@ const Shop = () => {
 			<div className="d-flex justify-content-center my-3">
 				<BtnPaginacion pagina={pagina} totPag={totPag} setPagina={setPagina} />
 			</div>
-			<PizzaFooter />
 		</div>
 	);
 };

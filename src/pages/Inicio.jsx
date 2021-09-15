@@ -8,11 +8,10 @@ import CategoriaCard from "../components/CategoriaCard";
 const Inicio = () => {
 	return (
 		<div>
-			<PizzaNav />
+			{/* <PizzaNav /> */}
 			<CarouselPizza />
 			<CategoriaCard />
 			<PizzaCarousel />
-			<PizzaFooter />
 		</div>
 	);
 };

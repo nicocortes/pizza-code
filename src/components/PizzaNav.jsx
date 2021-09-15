@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 
-const PizzaNav = () => {
+const PizzaNav = ({ carrito = 0 }) => {
 	const history = useHistory();
 	const [usuario, setUsuario] = useState();
-	const [carrito, setCarrito] = useState({});
 
 	useEffect(() => {
 		const datos = JSON.parse(localStorage.getItem("auth")) || {};
 		setUsuario(datos.usuario);
-	}, []);
-
-	useEffect(() => {
-		const datos = JSON.parse(localStorage.getItem("cart")) || {};
-		setCarrito(datos);
 	}, []);
 
 	const handleClick = () => {
@@ -110,7 +104,7 @@ const PizzaNav = () => {
 
 						<ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 							<li className="nav-item me-2 ">
-								<button className="btn btn-color-cart" onClick={handleClick}>
+								<button className="btn btn-color-user" onClick={handleClick}>
 									<i className="fa fa-user text-white">
 										<span>
 											{" "}

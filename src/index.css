@@ -23,8 +23,15 @@ code {
 	background-color: #3fae7f;
 }
 
-.btn-color-cart {
+.btn-color:hover {
+	background-color: #44c08c;
+}
+
+.btn-color-user {
 	background-color: #7d0e14;
+}
+.btn-color-user:hover {
+	background-color: #a01217;
 }
 
 /* ------ Categorias Cards --------- */
