@@ -48,9 +48,11 @@ code {
 }
 /* -------------Carousel Principal ----------- */
 
-.carousel-info {
+/* .carousel-info {
 	bottom: 50%;
-}
+	left: 30%;
+} */
+
 .carousel-principal {
 	width: 100%;
 	height: 500px;
@@ -91,12 +93,33 @@ code {
 	box-shadow: 0px 6px 15px 0px #7c7c7c;
 	transform: scale(1.001);
 }
+/* ------ Carousel productos ------- */
+.bg-color-red {
+	background-color: #ba151a;
+	border-radius: 10px;
+}
 
 /* -------Pizza Card --------- */
 .card-pizza {
 	border-radius: 10px;
 }
+/* --------Error 404 --------- */
+.rotate {
+	animation: rotation 8s infinite linear;
+}
 
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+.error-number {
+	font-size: 100px;
+}
 /* ----- Footer ------- */
 .footer-info {
 	align-items: center;

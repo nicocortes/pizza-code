@@ -8,6 +8,7 @@ import PizzaNav from "./components/PizzaNav";
 import PizzaFooter from "./components/PizzaFooter";
 import CartContext from "./components/CartContext";
 import MiCuenta from "./pages/MiCuenta";
+import Error404 from "./pages/Error404";
 
 const App = () => {
 	const changuito = JSON.parse(localStorage.getItem("cart")) || {
@@ -15,12 +16,11 @@ const App = () => {
 		costo: 0,
 		pizzas: [],
 	};
-	const user = JSON.parse(localStorage.getItem("auth")) || {};
 
 	const [carrito, setCarrito] = useState(changuito);
-	const [usuario, setUsuario] = useState(user);
+
 	return (
-		<CartContext.Provider value={{ carrito, setCarrito, usuario, setUsuario }}>
+		<CartContext.Provider value={{ carrito, setCarrito }}>
 			<Router>
 				<PizzaNav />
 
@@ -30,6 +30,7 @@ const App = () => {
 					<Route exact path="/shop" component={Shop} />
 					<Route exact path="/micuenta" component={MiCuenta} />
 					<Route exact path="/carrito" component={Carrito} />
+					<Route component={Error404} />
 				</Switch>
 				<PizzaFooter />
 			</Router>

@@ -46,6 +46,7 @@ const Carrito = () => {
 			}, 1000);
 		}
 	};
+
 	return (
 		<>
 			{carrito.total === 0 ? (

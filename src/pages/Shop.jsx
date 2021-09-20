@@ -5,19 +5,12 @@ import BtnPaginacion from "../components/BtnPaginacion";
 import ShopCard from "../components/ShopCard";
 
 const Shop = () => {
-	// let data = JSON.parse(localStorage.getItem("cart")) || {
-	// 	cantidad: 0,
-	// 	costo: 0,
-	// 	pizzas: [],
-	// };
-	// const [carrito, setCarrito] = useState(data);
 	const [pizzas, setPizzas] = useState([]);
 	const [pagina, setPagina] = useState(0);
 	const [totPag, setTotpag] = useState(0);
 
 	useEffect(() => {
 		getPizzas().then((respuesta) => {
-			// console.log(respuesta);
 			setPizzas(respuesta.pizzas);
 			setTotpag(respuesta.Total);
 		});
@@ -31,7 +24,6 @@ const Shop = () => {
 
 	return (
 		<div>
-			{/* <PizzaNav carrito={carrito} /> */}
 			<div className="container">
 				<div className="row">
 					<div className="col"></div>

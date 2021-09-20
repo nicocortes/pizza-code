@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useContext } from "react";
 import CartContext from "./CartContext";
 
@@ -68,10 +68,7 @@ const ShopCard = ({ pizzas }) => {
 										<h5 className="card-title text-end">${pizza.precio}</h5>
 									</div>
 								</div>
-								{/* <h5 className="card-title text-center">
-									{pizza.nombre}${pizza.precio}
-								</h5> */}
-								{/* <h5>{pizza.nombre}</h5> */}
+
 								<div className="card-footer bg-white">
 									<p className="card-text ">{pizza.detalle}</p>
 								</div>

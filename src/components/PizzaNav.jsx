@@ -93,20 +93,6 @@ const PizzaNav = () => {
 							</li>
 						</ul>
 
-						{/* <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-							<li className="nav-item d-flex">
-								<button
-									className="btn btn-secondary "
-									onClick={() => {
-										localStorage.removeItem("covid_app_user");
-										history.push("/login");
-									}}
-								>
-									Salir
-								</button>
-							</li>
-						</ul> */}
-
 						<ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 							<li className="nav-item me-2 ">
 								<button className="btn btn-color-user" onClick={handleClick}>

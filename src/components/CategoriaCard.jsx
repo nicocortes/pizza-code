@@ -10,7 +10,7 @@ const CategoriaCard = () => {
 		<div className="container">
 			<div className="row ">
 				<div className="col-12 col-md-6 mb-3 ">
-					<Link to="/pizzas">
+					<Link to="/shop">
 						<div className="card categorias-card ">
 							<img
 								src={clasicas}
@@ -30,7 +30,7 @@ const CategoriaCard = () => {
 					</Link>
 				</div>
 				<div className="col-12 col-md-6 mb-3 ">
-					<Link to="/pizzas">
+					<Link to="/shop">
 						<div className="card categorias-card ">
 							<img
 								src={sintacc}
@@ -52,7 +52,7 @@ const CategoriaCard = () => {
 			</div>
 			<div className="row">
 				<div className="col-12 col-md-6 mb-3">
-					<Link to="/pizzas">
+					<Link to="/shop">
 						<div className="card  categorias-card ">
 							<img
 								src={especialidad}
@@ -72,7 +72,7 @@ const CategoriaCard = () => {
 					</Link>
 				</div>
 				<div className="col-12 col-md-6">
-					<Link to="/pizzas">
+					<Link to="/shop">
 						<div className="card  categorias-card ">
 							<img
 								src={piedra}

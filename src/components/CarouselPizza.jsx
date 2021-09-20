@@ -28,7 +28,7 @@ const CarouselPizza = () => {
 						alt="img2"
 					/>
 					<Carousel.Caption className="carousel-info">
-						<h1 className="fst-italic d-none d-md-block">
+						<h1>
 							En cualquier ocasion..
 							<p>PizzaCode</p>
 						</h1>
@@ -49,29 +49,6 @@ const CarouselPizza = () => {
 				</Carousel.Item>
 			</Carousel>
 		</div>
-
-		// <div
-		// 	id="carousel"
-		// 	className="carousel slide carousel-fade"
-		// 	data-bs-ride="carousel"
-		// >
-		// 	<div className="carousel-inner">
-		// 		<div className="carousel-item active">
-		// 			<img src={img1} className="d-block w-100 " alt="coffee1" />
-		// 		</div>
-		// 		<div className="carousel-item">
-		// 			<img src={img2} className="d-block w-100" alt="cofee2" />
-		// 		</div>
-		// 		<div className="carousel-item">
-		// 			<img src={img3} className="d-block w-100" alt="cofee2" />
-		// 		</div>
-		// 		<div className="hijo">
-		// 			<h3>
-		// 				En cualquier ocasion.. <p>PizzaCode</p>
-		// 			</h3>
-		// 		</div>
-		// 	</div>
-		// </div>
 	);
 };
 

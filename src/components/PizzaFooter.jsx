@@ -8,13 +8,13 @@ const PizzaFooter = () => {
 			<div className="row footer-info">
 				<div className="col-12 col-md-4 ">
 					<h5 className="footer-social-title">Síguenos</h5>
-					<Link to="#" className="me-3">
+					<Link to="*" className="me-3">
 						<i className="fa fa-2x fa-facebook text-white"></i>
 					</Link>
-					<Link to="#" className="me-3">
+					<Link to="*" className="me-3">
 						<i className="fa fa-2x fa-twitter text-white"></i>
 					</Link>
-					<Link to="#">
+					<Link to="*">
 						<i className="fa fa-2x fa-instagram text-white"></i>
 					</Link>
 				</div>

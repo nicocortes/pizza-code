@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import piza1 from "../assets/pizzas/1.png";
 import piza2 from "../assets/pizzas/2.png";
 import piza3 from "../assets/pizzas/3.png";
@@ -15,29 +15,26 @@ const PizzaCarousel = () => {
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<div className="row">
-						<div className="col">
-							<img src={piza1} class="d-block w-100" alt="..." />
+						<div className="col-6 col-md-2">
+							<img src={piza1} class="d-block w-100" alt="pizza destacada 1" />
 						</div>
-						<div className="col">
-							<img src={piza2} class="d-block w-100" alt="..." />
+						<div className="col-6 col-md-2">
+							<img src={piza2} class="d-block w-100" alt="pizza destacada 2" />
 						</div>
-						<div className="col">
-							<img src={piza3} class="d-block w-100" alt="..." />
+						<div className="col-6 col-md-2">
+							<img src={piza3} class="d-block w-100" alt="pizza destacada 3" />
 						</div>
-						<div className="col">
-							<img src={piza4} class="d-block w-100" alt="..." />
+						<div className="col-6 col-md-2">
+							<img src={piza4} class="d-block w-100" alt="pizza destacada 4" />
 						</div>
-						<div className="col">
-							<img src={piza5} class="d-block w-100" alt="..." />
+						<div className="col-6 col-md-2">
+							<img src={piza5} class="d-block w-100" alt="pizza destacada 5" />
+						</div>
+						<div className="col-6 col-md-2">
+							<img src={piza1} class="d-block w-100" alt="pizza destacada 1" />
 						</div>
 					</div>
 				</div>
-				{/* <div class="carousel-item">
-					<img src="..." class="d-block w-100" alt="..." />
-				</div> */}
-				{/* <div class="carousel-item">
-					<img src="..." class="d-block w-100" alt="..." />
-				</div> */}
 			</div>
 			<button
 				class="carousel-control-prev"

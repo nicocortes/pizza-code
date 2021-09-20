@@ -38,7 +38,7 @@ const MiCuenta = () => {
 					</div>
 
 					<div className="row text-center">
-						<div className="col text-end  text-nowrap">
+						<div className="col   text-nowrap">
 							<button
 								onClick={() => {
 									localStorage.removeItem("auth");
@@ -51,15 +51,12 @@ const MiCuenta = () => {
 							>
 								Cerrar Sesión
 							</button>
-						</div>
-
-						{datos.usuario.rol === "ADMIN_ROLE" && (
-							<div className="col-6 text-start ">
+							{datos.usuario.rol === "ADMIN_ROLE" && (
 								<Link to="/admin">
-									<button className="btn btn-color ">Administración</button>
+									<button className="btn btn-color ms-2">Administración</button>
 								</Link>
-							</div>
-						)}
+							)}
+						</div>
 					</div>
 				</div>
 				<div className="row mt-5">
@@ -68,14 +65,6 @@ const MiCuenta = () => {
 
 					<div className="card ">
 						<table className="table">
-							{/* <thead>
-								<tr className="text-center">
-									<th scope="col">Sabor</th>
-									<th scope="col">Precio</th>
-									<th scope="col">Cantidad</th>
-									<th scope="col"></th>
-								</tr>
-							</thead> */}
 							<tbody className="text-center">
 								<tr>
 									<th scope="row">Nombre</th>
@@ -103,7 +92,6 @@ const MiCuenta = () => {
 						</table>
 					</div>
 				</div>
-				{/* <h3>{pedidos.pedidos.usuario}</h3> */}
 				<div className="row mt-5">
 					<h3>Tus pedidos</h3>
 
