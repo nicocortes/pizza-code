@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { postPedido } from "../helpers/pedido";
 import cartEmpty from "../assets/cart-empty.png";
 import CartContext from "../components/CartContext";
+import Swal from "sweetalert2";
 import { useContext } from "react";
 
 const Carrito = () => {
@@ -41,6 +42,11 @@ const Carrito = () => {
 				});
 			}
 		} else {
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Debes loguearte para realizar el pedido",
+			});
 			setTimeout(() => {
 				history.push("/login");
 			}, 1000);

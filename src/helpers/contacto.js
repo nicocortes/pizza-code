@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/consulta";
+const url = "https://pizza-code.herokuapp.com/api/consulta";
 
 export const postConsulta = async (data) => {
 	const resp = await fetch(url, {

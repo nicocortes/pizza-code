@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { getPedidos } from "../helpers/pedido";
+import { getPedidosUser } from "../helpers/pedido";
 import avatar from "../assets/avatar.png";
 
 const MiCuenta = () => {
@@ -10,7 +10,7 @@ const MiCuenta = () => {
 	const [order, setOrder] = useState([]);
 
 	useEffect(() => {
-		getPedidos(datos.usuario._id).then((respuesta) => {
+		getPedidosUser(datos.usuario._id).then((respuesta) => {
 			setPedidos(respuesta.pedidos);
 		});
 	}, []);

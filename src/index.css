@@ -27,6 +27,7 @@ code {
 .btn-color {
 	background-color: #3fae7f;
 	color: white;
+	border: none;
 }
 
 .btn-color:hover {
@@ -153,41 +154,42 @@ footer {
 	}
 }
 
-
 /*NOSOTROS*/
-.container-full-width{
-	background: rgb(186,21,26);
-	background: linear-gradient(0deg, rgba(186,21,26,1) 0%, rgba(1,120,83,1) 100%);
+.container-full-width {
+	background: rgb(186, 21, 26);
+	background: linear-gradient(
+		0deg,
+		rgba(186, 21, 26, 1) 0%,
+		rgba(1, 120, 83, 1) 100%
+	);
 	/*height: 100vh;*/
 	/*width: 100vw;*/
-	color:white;
-	font-family: 'Roboto', sans-serif;
-	}
-	
-	.img-text{
-	  margin-top: 50px;
-	}
-	
-	.card-perfil{
-	  display: flex;     
-	  transition: 0.4s ease-out;
-	  position:relative;
-	  left: 0px;
-	  box-shadow: -1rem 0 2rem #000;
-	  height:350px;
-	  width: 260px;
-	}
-	
-	.card-perfil:hover {
-	  transform: translateY(-20px);
-	  transition: 0.4s ease-out;
-	  background:#3fae7f;
-	  color:#3fae7f;
-	}
-	
-	.container-presentation{
-	  color:white;
-	  margin-bottom: 100px;
-	}
-	
-	
+	color: white;
+	font-family: "Roboto", sans-serif;
+}
+
+.img-text {
+	margin-top: 50px;
+}
+
+.card-perfil {
+	display: flex;
+	transition: 0.4s ease-out;
+	position: relative;
+	left: 0px;
+	box-shadow: -1rem 0 2rem #000;
+	height: 350px;
+	width: 260px;
+}
+
+.card-perfil:hover {
+	transform: translateY(-20px);
+	transition: 0.4s ease-out;
+	background: #3fae7f;
+	color: #3fae7f;
+}
+
+.container-presentation {
+	color: white;
+	margin-bottom: 100px;
+}
