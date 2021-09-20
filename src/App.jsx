@@ -9,6 +9,7 @@ import PizzaFooter from "./components/PizzaFooter";
 import CartContext from "./components/CartContext";
 import MiCuenta from "./pages/MiCuenta";
 import Error404 from "./pages/Error404";
+import Nosotros from "./components/nosotros";
 
 const App = () => {
 	const changuito = JSON.parse(localStorage.getItem("cart")) || {
@@ -30,6 +31,7 @@ const App = () => {
 					<Route exact path="/shop" component={Shop} />
 					<Route exact path="/micuenta" component={MiCuenta} />
 					<Route exact path="/carrito" component={Carrito} />
+					<Route exact path="/nuestrahistoria" component={Nosotros}/>
 					<Route component={Error404} />
 				</Switch>
 				<PizzaFooter />
