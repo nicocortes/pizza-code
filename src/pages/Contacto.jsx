@@ -59,6 +59,7 @@ const Contacto = () => {
 									required
 									value={formValue.nombre}
 									onChange={handleChange}
+									maxLength={30}
 								/>
 							</div>
 							<div className="form-group col-md-6">
@@ -74,6 +75,7 @@ const Contacto = () => {
 									pattern="[0-9]{4}-[0-9]{9}"
 									value={formValue.telefono}
 									onChange={handleChange}
+									maxLength={30}
 								/>
 							</div>
 						</div>
@@ -90,6 +92,7 @@ const Contacto = () => {
 									required
 									value={formValue.email}
 									onChange={handleChange}
+									maxLength={30}
 								/>
 							</div>
 							<div className="form-group col-md-6">
@@ -101,6 +104,7 @@ const Contacto = () => {
 									id="contact-asunto"
 									value={formValue.asunto}
 									onChange={handleChange}
+									maxLength={30}
 								/>
 							</div>
 						</div>
@@ -117,6 +121,7 @@ const Contacto = () => {
 								required
 								value={formValue.mensaje}
 								onChange={handleChange}
+								maxLength={300}
 							></textarea>
 						</div>
 						<div>

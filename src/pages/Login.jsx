@@ -88,6 +88,8 @@ const Login = () => {
 										name="email"
 										value={formValue.email}
 										onChange={handleChange}
+										maxLength={50}
+										required
 									/>
 								</div>
 								<div className="form-group mb-3">
@@ -98,6 +100,9 @@ const Login = () => {
 										name="password"
 										value={formValue.password}
 										onChange={handleChange}
+										maxLength={20}
+										minLength={8}
+										required
 									/>
 								</div>
 								<div className="nav-item">

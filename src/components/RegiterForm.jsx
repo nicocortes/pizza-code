@@ -24,9 +24,6 @@ const RegisterForm = () => {
 
 	useEffect(() => {
 		if (response.ok) {
-			//console.log(response);
-			//console.log("*****************");
-			//console.log(formValue);
 			Swal.fire(response.msg || " Usted se registro exitosamente");
 
 			setTimeout(() => {
@@ -43,7 +40,6 @@ const RegisterForm = () => {
 	};
 
 	const handleSubmit = (e) => {
-		//console.log("hola")
 		e.preventDefault();
 		const { nombre, domicilio, email, password } = formValue;
 
@@ -121,6 +117,7 @@ const RegisterForm = () => {
 											value={formValue.nombre}
 											onChange={handleChange}
 											required
+											maxLength={30}
 										/>
 									</Form.Group>
 									<Form.Group className="mb-3" controlId="formBasicDomicilio">
@@ -132,6 +129,7 @@ const RegisterForm = () => {
 											value={formValue.domicilio}
 											onChange={handleChange}
 											required
+											maxLength={30}
 										/>
 									</Form.Group>
 									<Form.Group className="mb-3" controlId="formBasicEmail">
@@ -143,6 +141,7 @@ const RegisterForm = () => {
 											value={formValue.email}
 											onChange={handleChange}
 											required
+											maxLength={30}
 										/>
 									</Form.Group>
 									<Form.Group className="mb-3" controlId="formBasicPassword">
@@ -154,6 +153,8 @@ const RegisterForm = () => {
 											value={formValue.password}
 											onChange={handleChange}
 											required
+											minLength={8}
+											maxLength={20}
 										/>
 									</Form.Group>
 									<Button
