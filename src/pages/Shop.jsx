@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { getPizzas } from "../helpers/pizza";
 import BtnPaginacion from "../components/BtnPaginacion";
-import PizzaNav from "../components/PizzaNav";
-import PizzaFooter from "../components/PizzaFooter";
+
 import ShopCard from "../components/ShopCard";
 
-const Shop = ({ carrito, setCarrito }) => {
+const Shop = () => {
 	// let data = JSON.parse(localStorage.getItem("cart")) || {
 	// 	cantidad: 0,
 	// 	costo: 0,
@@ -36,12 +35,8 @@ const Shop = ({ carrito, setCarrito }) => {
 			<div className="container">
 				<div className="row">
 					<div className="col"></div>
-					<div className="col-12 col-md-9">
-						<ShopCard
-							pizzas={pizzas}
-							carrito={carrito}
-							setCarrito={setCarrito}
-						/>
+					<div className="col-12 col-md-9 mt-5">
+						<ShopCard pizzas={pizzas} />
 					</div>
 				</div>
 			</div>

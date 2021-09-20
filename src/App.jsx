@@ -1,43 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import Inicio from "./pages/Inicio";
 import Contacto from "./pages/Contacto";
 import Shop from "./pages/Shop";
 import Carrito from "./pages/Carrito";
 import PizzaNav from "./components/PizzaNav";
 import PizzaFooter from "./components/PizzaFooter";
+import CartContext from "./components/CartContext";
+import MiCuenta from "./pages/MiCuenta";
 
 const App = () => {
-	let data = JSON.parse(localStorage.getItem("cart")) || {
-		cantidad: 0,
+	const changuito = JSON.parse(localStorage.getItem("cart")) || {
+		total: 0,
 		costo: 0,
 		pizzas: [],
 	};
-	const [carrito, setCarrito] = useState(data);
-	useEffect(() => {
-		localStorage.setItem("cart", JSON.stringify(carrito));
-	}, [carrito]);
-	return (
-		<Router>
-			<PizzaNav carrito={carrito} />
-			<Switch>
-				<Route exact path="/" component={Inicio} />
-				<Route exact path="/contacto" component={Contacto} />
-				<Route
-					exact
-					path="/shop"
-					component={() => <Shop carrito={carrito} setCarrito={setCarrito} />}
-				/>
+	const user = JSON.parse(localStorage.getItem("auth")) || {};
 
-				<Route
-					exact
-					path="/carrito"
-					component={() => <Carrito carrito={carrito} />}
-				/>
-			</Switch>
-			<PizzaFooter />
-		</Router>
+	const [carrito, setCarrito] = useState(changuito);
+	const [usuario, setUsuario] = useState(user);
+	return (
+		<CartContext.Provider value={{ carrito, setCarrito, usuario, setUsuario }}>
+			<Router>
+				<PizzaNav />
+
+				<Switch>
+					<Route exact path="/" component={Inicio} />
+					<Route exact path="/contacto" component={Contacto} />
+					<Route exact path="/shop" component={Shop} />
+					<Route exact path="/micuenta" component={MiCuenta} />
+					<Route exact path="/carrito" component={Carrito} />
+				</Switch>
+				<PizzaFooter />
+			</Router>
+		</CartContext.Provider>
 	);
 };
 

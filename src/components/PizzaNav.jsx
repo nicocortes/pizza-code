@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
+import { useContext } from "react";
+import CartContext from "./CartContext";
+import logo from "../assets/logo1.png";
 
-const PizzaNav = ({ carrito = 0 }) => {
+const PizzaNav = () => {
+	const { carrito } = useContext(CartContext);
 	const history = useHistory();
-	const [usuario, setUsuario] = useState();
+	const [usuario, setUsuario] = useState(null);
 
 	useEffect(() => {
 		const datos = JSON.parse(localStorage.getItem("auth")) || {};
@@ -11,8 +15,8 @@ const PizzaNav = ({ carrito = 0 }) => {
 	}, []);
 
 	const handleClick = () => {
-		if (usuario?.rol === "ADMIN_ROLE") {
-			history.push("/admin");
+		if (usuario) {
+			history.push("/micuenta");
 		} else {
 			history.push("/login");
 		}
@@ -23,6 +27,7 @@ const PizzaNav = ({ carrito = 0 }) => {
 			<nav className="navbar navbar-expand-lg navbar-dark ">
 				<div className="container">
 					<Link className="navbar-brand" to="/">
+						<img src={logo} alt="logo" className="logo" />
 						PizzaCode
 					</Link>
 					<button
@@ -78,7 +83,7 @@ const PizzaNav = ({ carrito = 0 }) => {
 								<NavLink
 									className="nav-link"
 									exact
-									to="#"
+									to="/nuestrahistoria"
 									activeStyle={{
 										fontWeight: "bold",
 									}}
@@ -115,13 +120,12 @@ const PizzaNav = ({ carrito = 0 }) => {
 							</li>
 							<li className="nav-item ">
 								<Link to="/carrito">
-									<button className="btn btn-color">
-										<i className="fa fa-shopping-cart text-white me-2"></i>
-
-										{carrito?.cantidad !== 0 && (
+									<button className="btn btn-color ">
+										<i className="fa fa-shopping-cart  me-2"></i>
+										{carrito?.total !== 0 && (
 											<b>
 												<span>
-													{carrito.cantidad} <span> | </span>
+													{carrito.total} <span> | </span>
 													<span>$</span>
 													{carrito.costo}
 												</span>

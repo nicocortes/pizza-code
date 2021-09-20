@@ -1,25 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useContext } from "react";
+import CartContext from "./CartContext";
 
-const ShopCard = ({ pizzas, carrito, setCarrito }) => {
-	const guardarPizza = (pizza, e) => {
-		e.preventDefault();
-		const object = carrito.pizzas.find((x) => x.id === pizza._id);
-		const prueba = carrito.pizzas.filter((x) => x.id !== pizza._id);
-		console.log(object);
+const ShopCard = ({ pizzas }) => {
+	const { carrito, setCarrito } = useContext(CartContext);
 
-		setCarrito({
-			cantidad: carrito.cantidad + 1,
-			costo: carrito.costo + pizza.precio,
-			pizzas: [
-				...carrito.pizzas,
-				{
-					id: pizza._id,
-					sabor: pizza.nombre,
-					precio: pizza.precio,
-					cantidad: 1,
-				},
-			],
-		});
+	localStorage.setItem("cart", JSON.stringify(carrito));
+
+	const guardarPizza = (pizza) => {
+		const object =
+			carrito.pizzas && carrito.pizzas.find((x) => x.id === pizza._id);
+
+		if (object) {
+			object.cantidad = object.cantidad + 1;
+			object.subtotal = object.precio * object.cantidad;
+
+			const prueba = carrito.pizzas.filter((x) => x.id !== pizza._id);
+
+			prueba.push(object);
+
+			setCarrito({
+				...carrito,
+				pizzas: prueba,
+				total: carrito.total + 1,
+				costo: carrito.costo + object.precio,
+			});
+		} else {
+			const objetoPizza = {
+				id: pizza._id,
+				sabor: pizza.nombre,
+				precio: pizza.precio,
+				subtotal: pizza.precio,
+				cantidad: 1,
+			};
+			const pizzasNueva = carrito.pizzas.push(objetoPizza);
+
+			setCarrito({
+				...carrito,
+				pizzas: pizzasNueva,
+			});
+
+			setCarrito({
+				...carrito,
+				total: carrito.total + 1,
+				costo: carrito.costo + objetoPizza.precio,
+			});
+		}
 	};
 
 	return (
@@ -27,32 +53,36 @@ const ShopCard = ({ pizzas, carrito, setCarrito }) => {
 			<div className="row row-cols-1 row-cols-md-3 g-4">
 				{pizzas.map((pizza) => (
 					<div className="col" key={pizza._id}>
-						<div className="card h-100">
+						<div className="card  card-pizza">
 							<img
 								src="https://i.imgur.com/gAWrwE9.png"
 								className="card-img-top"
 								alt={pizza.nombre}
 							/>
 							<div className="card-body">
-								<h5 className="card-title">{pizza.nombre}</h5>
-								<strong>{pizza.categoria.nombre}</strong>
-								<p className="card-text">{pizza.detalle}</p>
-							</div>
-							<div className="card-footer ">
-								<button onClick={(e) => guardarPizza(pizza, e)}>
-									agregar al carrito
-								</button>
-
-								{pizza.disponible ? (
-									<div className="d-flex justify-content-between align-items-center">
-										<span className="text-disponible">Disponible</span>
-										<button className="btn btn-success">Elegir</button>
+								<div className="row">
+									<div className="col">
+										<h5 className="card-title text-start">{pizza.nombre}</h5>
 									</div>
-								) : (
-									<span className="text-nodisponible">No disponible</span>
-								)}
+									<div className="col">
+										<h5 className="card-title text-end">${pizza.precio}</h5>
+									</div>
+								</div>
+								{/* <h5 className="card-title text-center">
+									{pizza.nombre}${pizza.precio}
+								</h5> */}
+								{/* <h5>{pizza.nombre}</h5> */}
+								<div className="card-footer bg-white">
+									<p className="card-text ">{pizza.detalle}</p>
+								</div>
 							</div>
 						</div>
+						<button
+							className="btn btn-color col-12 text-white mt-2"
+							onClick={() => guardarPizza(pizza)}
+						>
+							+ AÑADIR AL CARRITO
+						</button>
 					</div>
 				))}
 			</div>

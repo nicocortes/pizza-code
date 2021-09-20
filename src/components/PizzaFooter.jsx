@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo1.png";
 
 const PizzaFooter = () => {
 	return (
@@ -18,7 +19,8 @@ const PizzaFooter = () => {
 					</Link>
 				</div>
 				<div className="col-12 col-md-4">
-					<Link className="text-decoration-none text-white" to="*">
+					<Link className="text-decoration-none text-white" to="/">
+						<img src={logo} alt="logo" className="logo" />
 						<h5>PizzaCode</h5>
 					</Link>
 				</div>
