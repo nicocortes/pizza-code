@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	padding-top: 90px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
 		sans-serif;
@@ -20,8 +21,18 @@ code {
 }
 
 .navbar {
-	background-color: #ba151a !important;
+	background-color: rgba(186, 21, 26);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 99;
 	padding: 0;
+	transition: 1s;
+}
+
+.nav-color {
+	background-color: rgba(186, 21, 26, 0.8);
 }
 
 .btn-color {
@@ -49,25 +60,12 @@ code {
 }
 /* -------------Carousel Principal ----------- */
 
-/* .carousel-info {
-	bottom: 50%;
-	left: 30%;
-} */
-
 .carousel-principal {
 	width: 100%;
 	height: 500px;
 	object-fit: cover;
 	object-position: 20%20%;
 	scale: 20%;
-}
-@media (max-width: 500px) {
-	.carousel-principal {
-		height: 200px;
-		object-fit: cover;
-		object-position: center center;
-		object-fit: cover;
-	}
 }
 
 /* ------ Categorias Cards --------- */
@@ -103,21 +101,15 @@ code {
 /* -------Pizza Card --------- */
 .card-pizza {
 	border-radius: 10px;
+	min-height: 400px;
 }
+
+/*---------- Carrito------------ */
+.boton-carrito {
+	width: 20px;
+}
+
 /* --------Error 404 --------- */
-.rotate {
-	animation: rotation 8s infinite linear;
-}
-
-@keyframes rotation {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(359deg);
-	}
-}
-
 .error-number {
 	font-size: 100px;
 }
@@ -148,13 +140,7 @@ footer {
 	margin-top: 50vh;
 }
 
-@media (max-width: 500px) {
-	.categorias-card {
-		height: 200px;
-	}
-}
-
-/*NOSOTROS*/
+/*------ Nosotros --------*/
 .container-full-width {
 	background: rgb(186, 21, 26);
 	background: linear-gradient(
@@ -162,8 +148,6 @@ footer {
 		rgba(186, 21, 26, 1) 0%,
 		rgba(1, 120, 83, 1) 100%
 	);
-	/*height: 100vh;*/
-	/*width: 100vw;*/
 	color: white;
 	font-family: "Roboto", sans-serif;
 }
@@ -192,4 +176,25 @@ footer {
 .container-presentation {
 	color: white;
 	margin-bottom: 100px;
+}
+
+@media (max-width: 500px) {
+	.carousel-principal {
+		height: 200px;
+		object-fit: cover;
+		object-position: center center;
+		object-fit: cover;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer-info {
+		height: 300px;
+	}
+}
+
+@media (max-width: 500px) {
+	.categorias-card {
+		height: 200px;
+	}
 }

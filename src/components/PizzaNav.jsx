@@ -8,6 +8,22 @@ const PizzaNav = () => {
 	const { carrito } = useContext(CartContext);
 	const history = useHistory();
 	const [usuario, setUsuario] = useState(null);
+	const [show, setShow] = useState(false);
+
+	const controlNavbar = () => {
+		if (window.scrollY > 200) {
+			setShow(true);
+		} else {
+			setShow(false);
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener("scroll", controlNavbar);
+		return () => {
+			window.removeEventListener("scroll", controlNavbar);
+		};
+	}, []);
 
 	useEffect(() => {
 		const datos = JSON.parse(localStorage.getItem("auth")) || {};
@@ -24,7 +40,11 @@ const PizzaNav = () => {
 
 	return (
 		<div>
-			<nav className="navbar navbar-expand-lg navbar-dark ">
+			<nav
+				className={`navbar ${
+					show && "nav-color"
+				} navbar-expand-lg navbar-dark `}
+			>
 				<div className="container">
 					<Link className="navbar-brand" to="/">
 						<img src={logo} alt="logo" className="logo" />

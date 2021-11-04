@@ -13,8 +13,7 @@ const MiCuenta = () => {
 		getPedidosUser(datos.usuario._id).then((respuesta) => {
 			setPedidos(respuesta.pedidos);
 		});
-	}, []);
-	console.log("PEDIDOS", pedidos);
+	}, [datos.usuario._id]);
 
 	if (!datos) {
 		return (
@@ -42,10 +41,9 @@ const MiCuenta = () => {
 							<button
 								onClick={() => {
 									localStorage.removeItem("auth");
-									// setTimeout(() => {
+
 									history.push("/login");
 									window.location.reload();
-									// }, 1000);
 								}}
 								className="btn btn-color-red text-white "
 							>
@@ -61,7 +59,6 @@ const MiCuenta = () => {
 				</div>
 				<div className="row mt-5">
 					<h3>Tus datos</h3>
-					{/* <hr /> */}
 
 					<div className="card ">
 						<table className="table">
@@ -83,7 +80,7 @@ const MiCuenta = () => {
 								<tr>
 									<th scope="row">Usuario</th>
 									<td>
-										{datos.usuario.rol == "ADMIN_ROLE"
+										{datos.usuario.rol === "ADMIN_ROLE"
 											? "Administrador"
 											: "Cliente"}
 									</td>
@@ -131,26 +128,26 @@ const MiCuenta = () => {
 					</div>
 				</div>
 				<div
-					class="modal fade"
+					className="modal fade"
 					id="exampleModal"
-					tabindex="-1"
+					tabIndex="-1"
 					aria-labelledby="exampleModalLabel"
 					aria-hidden="true"
 				>
-					<div class="modal-dialog">
-						<div class="modal-content ">
-							<div class="modal-header ">
-								<h5 class="modal-title " id="exampleModalLabel">
+					<div className="modal-dialog">
+						<div className="modal-content ">
+							<div className="modal-header ">
+								<h5 className="modal-title " id="exampleModalLabel">
 									Detalle
 								</h5>
 								<button
 									type="button"
-									class="btn-close"
+									className="btn-close"
 									data-bs-dismiss="modal"
 									aria-label="Close"
 								></button>
 							</div>
-							<div class="modal-body table-responsive">
+							<div className="modal-body table-responsive">
 								<table className="table ">
 									<thead>
 										<tr className="text-center">
@@ -164,23 +161,19 @@ const MiCuenta = () => {
 									<tbody className="text-center">
 										{order.map((pedido) => (
 											<tr key={pedido._id}>
-												{/* <th scope="row">{pedido.fecha}</th> */}
 												<td>{pedido.sabor}</td>
 												<td>${pedido.precio}</td>
 												<td>{pedido.cantidad}</td>
 												<td>${pedido.subtotal}</td>
-
-												{/* <td>{pedido.cantidad}</td>
-												<td>${pedido.costo}</td> */}
 											</tr>
 										))}
 									</tbody>
 								</table>
 							</div>
-							<div class="modal-footer">
+							<div className="modal-footer">
 								<button
 									type="button"
-									class="btn btn-danger"
+									className="btn btn-danger"
 									data-bs-dismiss="modal"
 								>
 									Cerrar

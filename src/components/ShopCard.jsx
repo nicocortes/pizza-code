@@ -50,16 +50,19 @@ const ShopCard = ({ pizzas }) => {
 
 	return (
 		<>
-			<div className="row row-cols-1 row-cols-md-3 g-4">
+			<div className="row row-cols-1 row-cols-md-3 g-4 ">
 				{pizzas.map((pizza) => (
-					<div className="col" key={pizza._id}>
-						<div className="card  card-pizza">
+					<div
+						className="col d-flex justify-content-between align-items-center flex-column"
+						key={pizza._id}
+					>
+						<div className="card card-pizza ">
 							<img
-								src="https://i.imgur.com/gAWrwE9.png"
+								src={pizza.img}
 								className="card-img-top"
 								alt={pizza.nombre}
 							/>
-							<div className="card-body">
+							<div className="card-body h-100 ">
 								<div className="row">
 									<div className="col">
 										<h5 className="card-title text-start">{pizza.nombre}</h5>
@@ -69,8 +72,8 @@ const ShopCard = ({ pizzas }) => {
 									</div>
 								</div>
 
-								<div className="card-footer bg-white">
-									<p className="card-text ">{pizza.detalle}</p>
+								<div className="card-footer bg-white p-0">
+									<p className="card-text text-center mt-3">{pizza.detalle}</p>
 								</div>
 							</div>
 						</div>

@@ -4,8 +4,6 @@ import BtnPaginacion from "./BtnPaginacion";
 //import ModalPedidos from "./Modals/ModalPedidos";
 
 const TablePedidos = () => {
-	const [Mostrar, setMostrar] = useState("");
-
 	const [pedidos, setPedidos] = useState({
 		datos: [],
 		loading: true,
@@ -32,9 +30,6 @@ const TablePedidos = () => {
 	useEffect(() => {
 		updateDatos(pagina);
 	}, [pagina, show]);
-
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
 
 	const updateDatos = (pag) => {
 		getPedidos(pag).then((respuesta) => {

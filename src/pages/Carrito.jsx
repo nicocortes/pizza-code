@@ -28,6 +28,60 @@ const Carrito = () => {
 		}
 	};
 
+	const restarProducto = (pizza) => {
+		const pedido = carrito.pizzas.map(function (dato) {
+			if (dato.id === pizza.id) {
+				dato.cantidad = dato.cantidad - 1;
+				dato.subtotal = dato.precio * dato.cantidad;
+			}
+
+			return dato;
+		});
+
+		let sumaSubtotales = 0;
+		for (let i = 0; i < pedido.length; i++) {
+			sumaSubtotales += pedido[i].subtotal;
+		}
+
+		setCarrito({
+			...carrito,
+			pizzas: pedido,
+			total: carrito.total - 1,
+			costo: sumaSubtotales,
+		});
+	};
+
+	const sumarProducto = (pizza) => {
+		const pedido = carrito.pizzas.map(function (dato) {
+			if (dato.id === pizza.id) {
+				dato.cantidad = dato.cantidad + 1;
+				dato.subtotal = dato.precio * dato.cantidad;
+			}
+
+			return dato;
+		});
+
+		let sumaSubtotales = 0;
+		for (let i = 0; i < pedido.length; i++) {
+			sumaSubtotales += pedido[i].subtotal;
+		}
+
+		setCarrito({
+			...carrito,
+			pizzas: pedido,
+			total: carrito.total + 1,
+			costo: sumaSubtotales,
+		});
+	};
+
+	const disableButton = (pizza) => {
+		if (pizza.cantidad > 1) {
+			return false;
+		} else {
+			return true;
+		}
+	};
+
 	const crearPedido = () => {
 		if (JSON.parse(localStorage.getItem("auth"))) {
 			let validarPedido = window.confirm(`¿Desea realizar el pedido?`);
@@ -73,7 +127,7 @@ const Carrito = () => {
 				<div className="container">
 					<div className="row">
 						<div className="col">
-							<div className="card mt-5">
+							<div className="card table-responsive mt-5 ">
 								<table className="table">
 									<thead>
 										<tr className="text-center">
@@ -85,13 +139,37 @@ const Carrito = () => {
 									</thead>
 									<tbody className="text-center">
 										{carrito.pizzas.map((pizza) => (
-											<tr key={pizza._id + 1}>
+											<tr key={pizza.id}>
 												<th scope="row">{pizza.sabor}</th>
 												<td>${pizza.precio}</td>
-												<td>{pizza.cantidad}</td>
+												<td>
+													<div className="row">
+														<div className="col text-end pe-0">
+															<button
+																className=" py-0 px-1 btn btn-secondary boton-carrito"
+																onClick={() => restarProducto(pizza)}
+																disabled={disableButton(pizza)}
+															>
+																-
+															</button>
+														</div>
+														<div className="col p-0 m-auto">
+															<span>{pizza.cantidad}</span>
+														</div>
+
+														<div className="col text-start ps-0">
+															<button
+																className="btn btn-secondary py-0 px-1 boton-carrito "
+																onClick={() => sumarProducto(pizza)}
+															>
+																+
+															</button>
+														</div>
+													</div>
+												</td>
 												<td>
 													<button
-														className="btn btn-danger ms-2"
+														className="btn btn-danger ms-2 "
 														onClick={() => borrarProducto(pizza)}
 													>
 														<i className="fa fa-trash-o" aria-hidden="true"></i>
@@ -101,7 +179,7 @@ const Carrito = () => {
 										))}
 									</tbody>
 								</table>
-								<div className="row text-center">
+								<div className="row text-center px-0">
 									<div className="col-12 col-md-6">
 										{" "}
 										<h2>Total: ${carrito.costo}</h2>
