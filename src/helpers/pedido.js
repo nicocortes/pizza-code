@@ -40,7 +40,6 @@ export const getPedidos = async (desde) => {
 	return datos;
 };
 
-//GET Pedido Traer Pedido por Id
 export const getPedido = async (id) => {
 	const resp = await fetch(`${url}/${id}`, {
 		method: "GET",
@@ -68,7 +67,6 @@ export const putPedido = async (id) => {
 	return datos;
 };
 
-//DELETE Pedido - Borrar Pedido
 export const deletePedido = async (id) => {
 	const resp = await fetch(`${url}/${id}`, {
 		method: "DELETE",

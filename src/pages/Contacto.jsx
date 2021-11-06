@@ -132,7 +132,6 @@ const Contacto = () => {
 						</div>
 					</form>
 				</div>
-				{/* </div> */}
 			</div>
 		</div>
 	);

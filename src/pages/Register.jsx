@@ -1,87 +1,165 @@
-import React, { useState } from "react";
-import RegisterFrom from "../components/RegiterForm";
-
-//importa las funciones
-// que hay en helpers
-// para poder usarlas
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { postUsuario } from "../helpers/usuario";
+import Swal from "sweetalert2";
+import * as emailjs from "emailjs-com";
 
-//funcion principal
-//componente Register
-const Register = () => {
-	//variable para saber si el componente
-	//esta montado
-	//const isMounted = useRef(true);
-	const [usuarios, setUsuarios] = useState([]);
+const SERVICE_ID = "service_kne83he";
+const TEMPLATE_ID = "template_54xj0tj";
+const USER_ID = "user_Rt2AHG2InO0xxM5VaSVeY";
 
-	// crea un estado "formValue" para el formulario
-	// es un estado donde almacenamos los valores
-	// que tienen los datos del formulario.
+const RegisterForm = () => {
 	const [formValue, setFormValue] = useState({
 		nombre: "",
+		domicilio: "",
 		email: "",
 		password: "",
-		rol: "",
 	});
 
-	/*
-    useEffect(() => {
-        setFormValue({
-          nombre: "",
-          email: "",
-          password: "",
-          rol: "",
-          estado: true,
-        });
-        if (actualizar) {
-            getPizza(actualizar).then((respuesta) => {
-            setFormValue({
-                nombre: respuesta.pizza.nombre,
-                precio: respuesta.pizza.precio,
-                detalle: respuesta.pizza.detalle,
-                categoria: respuesta.pizza.categoria,
-                disponible: respuesta.pizza.disponible,
-            });
-        });
-    }, [actualizar]);
-    }*/
+	const [response, setResponse] = useState({});
+	const history = useHistory();
 
-	//Evento handleSubmit
-	//esta funcion se ejecuta cuando el usuario
-	//toca el boton del formulario
+	useEffect(() => {
+		if (response.ok) {
+			Swal.fire(response.msg || " Usted se registro exitosamente");
+
+			setTimeout(() => {
+				history.push("/");
+			}, 1000);
+		}
+	}, [response, history]);
+
+	const handleChange = ({ target }) => {
+		setFormValue({
+			...formValue,
+			[target.name]: target.value,
+		});
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const { nombre, email, password } = formValue;
 
-		//extraemos los datos desde formValue
-		//desestructuracion
-		const { nombre, email, password, rol } = formValue;
+		const expCharactersLength = /^[0-9a-zA-Z.,:;-_()]{6,16}$/;
 
-		if (nombre && email && password && rol) {
-			//si tienen informacion estas variables
+		if (!expCharactersLength.test(password)) {
+			Swal.fire({
+				icon: "error",
+				text: "Debe ingresar minimo 6 y maximo 16 caracteres!",
+			});
+			return;
+		}
 
-			//peticion
-			//llama al metodo POST
-			// se manda los valores del formulario que estan
-			// almacenados en formValue
-			postUsuario(formValue).then((respuesta) => {
-				setUsuarios(respuesta);
+		if (nombre && email && password) {
+			const templateParams = {
+				from_name: "Pizza Code",
+				to_name: nombre,
+				message: "Bienvenido, se realizó con éxito tu registración.",
+				to: email,
+			};
+
+			emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID);
+
+			const apiResponse = {
+				ok: true,
+				msg: "Registro exitoso.",
+			};
+
+			setResponse(apiResponse);
+			postUsuario(formValue).then((response) => {
+				setResponse(response);
 				setFormValue({
 					nombre: "",
+					domicilio: "",
 					email: "",
 					password: "",
-					rol: "",
-					estado: true,
 				});
 			});
 		}
 	};
 
 	return (
-		<div className="mt-5">
-			<RegisterFrom />
+		<div className="container-fluid mt-5">
+			<div className="row form">
+				<div className="col col-md-4 offset-md-4">
+					<div className="card card-register">
+						<div className="card-body">
+							<h3 className="card-title text-center">
+								<i className="fa fa-user" aria-hidden="true"></i> Registrese
+								aqui:
+							</h3>
+							<hr />
+							<Form onSubmit={handleSubmit}>
+								<Form.Group className="mb-3" controlId="formBasicPassword">
+									<Form.Label>Nombre y Apellido</Form.Label>
+									<Form.Control
+										type="nombre"
+										placeholder="Ingrese nombre y apellido"
+										name="nombre"
+										value={formValue.nombre}
+										onChange={handleChange}
+										required
+										maxLength={30}
+									/>
+								</Form.Group>
+								<Form.Group className="mb-3" controlId="formBasicDomicilio">
+									<Form.Label>Domicilio</Form.Label>
+									<Form.Control
+										type="domicilio"
+										placeholder="Ingrese domicilio"
+										name="domicilio"
+										value={formValue.domicilio}
+										onChange={handleChange}
+										required
+										maxLength={30}
+									/>
+								</Form.Group>
+								<Form.Group className="mb-3" controlId="formBasicEmail">
+									<Form.Label>Correo</Form.Label>
+									<Form.Control
+										type="email"
+										placeholder="Ingrese su correo"
+										name="email"
+										value={formValue.email}
+										onChange={handleChange}
+										required
+										maxLength={30}
+									/>
+								</Form.Group>
+								<Form.Group className="mb-3" controlId="formBasicPassword">
+									<Form.Label>Contraseña</Form.Label>
+									<Form.Control
+										type="password"
+										placeholder="Ingrese su contraseña"
+										name="password"
+										value={formValue.password}
+										onChange={handleChange}
+										required
+										minLength={8}
+										maxLength={20}
+									/>
+								</Form.Group>
+								<Button
+									variant="primary"
+									type="submit"
+									className="btn btn-color w-100 "
+								>
+									Registrarse
+								</Button>
+								{response.ok === false && (
+									<div className="alert alert-danger" mt-3 role="alert">
+										{response.msg}
+									</div>
+								)}
+							</Form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
 
-export default Register;
+export default RegisterForm;

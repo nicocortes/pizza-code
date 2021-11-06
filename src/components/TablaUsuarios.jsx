@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getUsuarios, deleteUsuario } from "../helpers/usuario";
 import BtnPaginacion from "./BtnPaginacion";
 import ModalUsuarioAdd from "./Modals/ModalUsuarioAdd";
-// import ModalUs2 from "./Modals/ModalUs2";
 
 const TablaUsuario = () => {
-	const [actualizar, setActualizar] = useState(""); //agregado
+	const [actualizar, setActualizar] = useState("");
 
 	const [usuarios, setUsuarios] = useState({
 		datos: [],
@@ -17,15 +16,13 @@ const TablaUsuario = () => {
 
 	const [show, setShow] = useState(false);
 
-	// const [show2, setShow2] = useState(false);
-
 	useEffect(() => {
 		getUsuarios().then((respuesta) => {
 			setUsuarios({
 				datos: respuesta.usuarios,
 				loading: false,
 			});
-			setTotpag(respuesta.total);
+			setTotpag(respuesta.Total);
 		});
 	}, []);
 
@@ -33,15 +30,8 @@ const TablaUsuario = () => {
 		updateDatos(pagina);
 	}, [pagina, show]);
 
-	// useEffect(() => {
-	//   updateDatos(pagina);
-	// }, [show]);
-
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-
-	// const handleClose2 = () => setShow2(false);
-	// const handleShow2 = () => setShow2(true);
 
 	const updateDatos = (pag) => {
 		getUsuarios(pag).then((respuesta) => {
@@ -80,7 +70,7 @@ const TablaUsuario = () => {
 					Cargando...
 				</div>
 			) : (
-				<div>
+				<div className="table-responsive">
 					<table className="table">
 						<thead>
 							<tr>
@@ -105,10 +95,9 @@ const TablaUsuario = () => {
 								<tr key={usuario._id}>
 									<th scope="row">{usuario.nombre}</th>
 									<td>{usuario.email}</td>
-									{/* <td>{usuario.estado ? "Activo" : "Inactivo"}</td> */}
 									<th>
 										<button
-											className="btn btn-warning "
+											className="btn btn-warning"
 											onClick={() => {
 												setActualizar(usuario._id);
 												handleShow();
@@ -121,7 +110,7 @@ const TablaUsuario = () => {
 										</button>
 
 										<button
-											className="btn btn-danger mt-2"
+											className="btn btn-danger mt-1 mt-lg-0 ms-lg-2"
 											onClick={() => borrarUsuario(usuario._id)}
 										>
 											<i className="fa fa-trash-o " aria-hidden="true"></i>
@@ -131,20 +120,19 @@ const TablaUsuario = () => {
 							))}
 						</tbody>
 					</table>
-					<BtnPaginacion
-						totPag={totPag}
-						pagina={pagina}
-						setPagina={setPagina}
-					/>
+					<div className="text-center">
+						<BtnPaginacion
+							totPag={totPag}
+							pagina={pagina}
+							setPagina={setPagina}
+						/>
+					</div>
+
 					<ModalUsuarioAdd
 						show={show}
 						handleClose={handleClose}
-						actualizar={actualizar} //agregado
+						actualizar={actualizar}
 					/>
-					{/* <ModalUs2
-          show={show2}
-          handleClose2={handleClose2} */}
-					{/* /> */}
 				</div>
 			)}
 		</>

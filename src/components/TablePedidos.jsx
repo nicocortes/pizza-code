@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getPedidos, deletePedido, putPedido } from "../helpers/pedido";
 import BtnPaginacion from "./BtnPaginacion";
-//import ModalPedidos from "./Modals/ModalPedidos";
 
 const TablePedidos = () => {
 	const [pedidos, setPedidos] = useState({
@@ -12,7 +11,7 @@ const TablePedidos = () => {
 	const [pagina, setPagina] = useState(0);
 	const [totPag, setTotpag] = useState(0);
 
-	const [show, setShow] = useState(false);
+	const [show] = useState(false);
 
 	useEffect(() => {
 		getPedidos().then((respuesta) => {
@@ -24,7 +23,6 @@ const TablePedidos = () => {
 		});
 	}, []);
 
-	//Agregado de Nico
 	const [order, setOrder] = useState([]);
 
 	useEffect(() => {
@@ -85,25 +83,23 @@ const TablePedidos = () => {
 					Cargando...
 				</div>
 			) : (
-				<div className="mb-5">
+				<div className="mb-5 table-responsive">
 					<table className="table">
 						<thead>
 							<tr>
-								<th scope="col">nombre</th>
-								<th scope="col">total</th>
-								<th scope="col">costo</th>
-								<th scope="col">realizado</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Cantidad</th>
+								<th scope="col">Total</th>
+								<th scope="col">Estado</th>
 							</tr>
 						</thead>
 						<tbody>
 							{pedidos.datos.map((pedidos) => (
 								<tr key={pedidos._id}>
 									<th scope="row">{pedidos.usuario.nombre}</th>
-
 									<td>{pedidos.total}</td>
 									<td>${pedidos.costo}</td>
 									<td>{pedidos.realizado ? "Listo" : "Pendiente"}</td>
-
 									<td>
 										<button
 											className="btn btn-warning ms-2"
@@ -115,13 +111,13 @@ const TablePedidos = () => {
 											></i>
 										</button>
 										<button
-											className="btn btn-danger ms-2"
+											className="btn btn-danger ms-1"
 											onClick={() => borrarPedido(pedidos._id)}
 										>
 											<i className="fa fa-trash-o" aria-hidden="true"></i>
 										</button>
 										<button
-											className="btn btn-info ms-2"
+											className="btn btn-info ms-1"
 											onClick={() => setOrder(pedidos.pizzas)}
 											data-bs-toggle="modal"
 											data-bs-target="#exampleModal"
@@ -133,36 +129,35 @@ const TablePedidos = () => {
 							))}
 						</tbody>
 					</table>
-
-					<BtnPaginacion
-						totPag={totPag}
-						pagina={pagina}
-						setPagina={setPagina}
-					/>
-
-					{/* modal */}
+					<div className="text-center">
+						<BtnPaginacion
+							totPag={totPag}
+							pagina={pagina}
+							setPagina={setPagina}
+						/>
+					</div>
 
 					<div
-						class="modal fade"
+						className="modal fade"
 						id="exampleModal"
-						tabindex="-1"
+						tabIndex="-1"
 						aria-labelledby="exampleModalLabel"
 						aria-hidden="true"
 					>
-						<div class="modal-dialog">
-							<div class="modal-content ">
-								<div class="modal-header ">
-									<h5 class="modal-title " id="exampleModalLabel">
+						<div className="modal-dialog">
+							<div className="modal-content ">
+								<div className="modal-header ">
+									<h5 className="modal-title " id="exampleModalLabel">
 										Detalle
 									</h5>
 									<button
 										type="button"
-										class="btn-close"
+										className="btn-close"
 										data-bs-dismiss="modal"
 										aria-label="Close"
 									></button>
 								</div>
-								<div class="modal-body table-responsive">
+								<div className="modal-body table-responsive">
 									<table className="table ">
 										<thead>
 											<tr className="text-center">
@@ -175,22 +170,19 @@ const TablePedidos = () => {
 										<tbody className="text-center">
 											{order.map((pedido) => (
 												<tr key={pedido._id}>
-													{/* <th scope="row">{pedido.fecha}</th> */}
 													<td>{pedido.sabor}</td>
 													<td>${pedido.precio}</td>
 													<td>{pedido.cantidad}</td>
 													<td>${pedido.subtotal}</td>
-													{/* <td>{pedido.cantidad}</td>
-                        <td>${pedido.costo}</td> */}
 												</tr>
 											))}
 										</tbody>
 									</table>
 								</div>
-								<div class="modal-footer">
+								<div className="modal-footer">
 									<button
 										type="button"
-										class="btn btn-danger"
+										className="btn btn-danger"
 										data-bs-dismiss="modal"
 									>
 										Cerrar

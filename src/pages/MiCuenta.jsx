@@ -13,7 +13,7 @@ const MiCuenta = () => {
 		getPedidosUser(datos.usuario._id).then((respuesta) => {
 			setPedidos(respuesta.pedidos);
 		});
-	}, [datos.usuario._id]);
+	});
 
 	if (!datos) {
 		return (

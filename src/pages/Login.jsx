@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { postAuth } from "../helpers/autentication";
-
-// import logo from "";
 import { useEffect } from "react";
 
 const Login = () => {
@@ -63,14 +61,7 @@ const Login = () => {
 	};
 
 	return (
-		<div className="container-fluid">
-			<div className="row  background-up">
-				<div className="col d-flex justify-content-center ">
-					<h1 className="mt-5 text-white">
-						{/* <img className="logo" src= alt="logo" /> CoderPizza */}
-					</h1>
-				</div>
-			</div>
+		<div className="container-fluid mt-5">
 			<div className="row">
 				<div className="col col-md-4 offset-md-4">
 					<div className="card card-login">

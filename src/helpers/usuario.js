@@ -1,7 +1,5 @@
 const url = "https://pizza-code.herokuapp.com";
 
-//GET Usuarios
-
 export const getUsuarios = async (desde) => {
 	const resp = await fetch(`${url}/api/usuarios?desde=${desde}`, {
 		method: "GET",
@@ -15,9 +13,7 @@ export const getUsuarios = async (desde) => {
 	return datos;
 };
 
-//GET Usuario Id
-
-export const getUsuarioId = async (id) => {
+export const getUsuario = async (id) => {
 	const resp = await fetch(`${url}/api/usuarios/${id}`, {
 		method: "GET",
 
@@ -30,10 +26,7 @@ export const getUsuarioId = async (id) => {
 	return datos;
 };
 
-//POST Usuario Creacion
-
 export const postUsuario = async (data) => {
-	console.log(data);
 	const resp = await fetch(`${url}/api/usuarios`, {
 		method: "POST",
 		body: JSON.stringify(data),
@@ -46,7 +39,6 @@ export const postUsuario = async (data) => {
 	return datos;
 };
 
-//PUT Usuarios
 export const putUsuario = async (id, data) => {
 	const resp = await fetch(`${url}/api/usuarios/${id}`, {
 		method: "PUT",
@@ -61,7 +53,6 @@ export const putUsuario = async (id, data) => {
 	return datos;
 };
 
-//Delete Usuarios
 export const deleteUsuario = async (id) => {
 	const resp = await fetch(`${url}/api/usuarios/${id}`, {
 		method: "DELETE",

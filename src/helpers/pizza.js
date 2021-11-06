@@ -24,7 +24,6 @@ export const getPizza = async (id) => {
 	return datos;
 };
 
-//POST Pizza Crear Pizza
 export const postPizza = async (data) => {
 	const resp = await fetch(`${url}`, {
 		method: "POST",
@@ -39,7 +38,6 @@ export const postPizza = async (data) => {
 	return datos;
 };
 
-//PUT Pizza Actualizar Pizza
 export const putPizza = async (id, data) => {
 	const resp = await fetch(`${url}/${id}`, {
 		method: "PUT",
@@ -54,7 +52,6 @@ export const putPizza = async (id, data) => {
 	return datos;
 };
 
-//DELETE Pizza - Borrar Pizza
 export const deletePizza = async (id) => {
 	const resp = await fetch(`${url}/${id}`, {
 		method: "DELETE",

@@ -10,7 +10,7 @@ import PizzaFooter from "./components/PizzaFooter";
 import CartContext from "./components/CartContext";
 import MiCuenta from "./pages/MiCuenta";
 import Error404 from "./pages/Error404";
-import Nosotros from "./components/nosotros";
+import Nosotros from "./components/Nosotros";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";

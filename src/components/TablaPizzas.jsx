@@ -69,8 +69,8 @@ const TablaPizza = () => {
 					Cargando...
 				</div>
 			) : (
-				<div>
-					<table className="table">
+				<div className="table-responsive">
+					<table className="table ">
 						<thead>
 							<tr>
 								<th scope="col">Nombre</th>
@@ -85,7 +85,7 @@ const TablaPizza = () => {
 											handleShow();
 										}}
 									>
-										<i class="fa fa-2x fa-plus-square"></i>
+										<i className="fa fa-2x fa-plus-square"></i>
 									</button>
 								</th>
 								<th></th>
@@ -116,7 +116,7 @@ const TablaPizza = () => {
 											></i>
 										</button>
 										<button
-											className="btn btn-danger ms-2 mt-2"
+											className="btn btn-danger ms-2 mt-1"
 											onClick={() => borrarProducto(producto._id)}
 										>
 											<i className="fa fa-trash-o" aria-hidden="true"></i>
@@ -126,18 +126,19 @@ const TablaPizza = () => {
 							))}
 						</tbody>
 					</table>
-					{/* <div className="d-flex justify-content-center"> */}
-					<BtnPaginacion
-						totPag={totPag}
-						pagina={pagina}
-						setPagina={setPagina}
-					/>
+					<div className="text-center">
+						<BtnPaginacion
+							totPag={totPag}
+							pagina={pagina}
+							setPagina={setPagina}
+						/>
+					</div>
+
 					<ModalPizzas
 						show={show}
 						handleClose={handleClose}
 						actualizar={actualizar}
 					/>
-					{/* </div> */}
 				</div>
 			)}
 		</>
