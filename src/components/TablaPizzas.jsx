@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getPizzas, deletePizza } from "../helpers/pizza";
+import { deletePizza, getPizzas, putPizza } from "../helpers/pizza";
 import BtnPaginacion from "./BtnPaginacion";
 import ModalPizzas from "./Modals/ModalPizzas";
 
@@ -17,7 +17,7 @@ const TablaPizza = () => {
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {
-		getPizzas().then((respuesta) => {
+		getPizzas("todo").then((respuesta) => {
 			setPizzas({
 				datos: respuesta.pizzas,
 				loading: false,
@@ -35,7 +35,7 @@ const TablaPizza = () => {
 	const handleShow = () => setShow(true);
 
 	const updateDatos = (pag) => {
-		getPizzas(pag).then((respuesta) => {
+		getPizzas("todo", pag).then((respuesta) => {
 			setPizzas({
 				datos: respuesta.pizzas,
 				loading: false,
@@ -43,14 +43,13 @@ const TablaPizza = () => {
 		});
 	};
 
-	//---------------------------
 	const borrarProducto = (uid) => {
 		let produc = pizzas.datos.find((pizza) => {
 			return pizza._id === uid;
 		});
 
 		let validar = window.confirm(
-			`Esta seguro que quiere inactivar el producto ${produc.nombre}?`
+			`¿Esta seguro que desea eliminar la pizza ${produc.nombre}?`
 		);
 		if (validar) {
 			deletePizza(uid).then((respuesta) => {
@@ -60,6 +59,12 @@ const TablaPizza = () => {
 				updateDatos(pagina);
 			});
 		}
+
+		putPizza(uid, { publicado: false }).then((respuesta) => {
+			if (respuesta.errors) {
+				return window.alert(respuesta.errors[0].msg);
+			}
+		});
 	};
 
 	return (
@@ -74,7 +79,7 @@ const TablaPizza = () => {
 						<thead>
 							<tr>
 								<th scope="col">Nombre</th>
-								<th scope="col">Disponible</th>
+								<th scope="col">Publicada</th>
 								<th scope="col">Precio</th>
 								<th scope="col">Categoria</th>
 								<th>
@@ -88,17 +93,14 @@ const TablaPizza = () => {
 										<i className="fa fa-2x fa-plus-square"></i>
 									</button>
 								</th>
-								<th></th>
-								<th></th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							{pizzas.datos.map((producto) => (
 								<tr key={producto._id}>
 									<th scope="row">{producto.nombre}</th>
-									<td>
-										{producto.disponible ? "Disponible" : "No disponible"}
+									<td className="text-center">
+										{producto.publicado ? "Si" : "No"}
 									</td>
 									<td>${producto.precio}</td>
 									<td>{producto.categoria}</td>

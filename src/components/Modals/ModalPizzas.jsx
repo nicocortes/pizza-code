@@ -12,7 +12,8 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 		precio: "",
 		detalle: "",
 		categoria: "",
-		disponible: true,
+		img: "",
+		publicado: true,
 	});
 
 	useEffect(() => {
@@ -21,7 +22,8 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 			precio: "",
 			detalle: "",
 			categoria: "",
-			disponible: true,
+			img: "",
+			publicado: true,
 		});
 		if (actualizar) {
 			getPizza(actualizar).then((respuesta) => {
@@ -30,14 +32,15 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 					precio: respuesta.pizza.precio,
 					detalle: respuesta.pizza.detalle,
 					categoria: respuesta.pizza.categoria,
-					disponible: respuesta.pizza.disponible,
+					img: respuesta.pizza.img,
+					publicado: respuesta.pizza.publicado,
 				});
 			});
 		}
 	}, [actualizar]);
 
 	const handleChange = ({ target }) => {
-		if (target.name === "disponible") {
+		if (target.name === "publicado") {
 			setFormValue({
 				...formValue,
 				[target.name]: target.checked,
@@ -70,7 +73,8 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 					precio: "",
 					detalle: "",
 					categoria: "",
-					disponible: true,
+					img: "",
+					publicado: true,
 				});
 				handleClose();
 			});
@@ -89,7 +93,8 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 					precio: "",
 					detalle: "",
 					categoria: "",
-					disponible: true,
+					img: "",
+					publicado: true,
 				});
 				handleClose();
 			});
@@ -106,7 +111,7 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 				</Modal.Header>
 				<form onSubmit={handleSubmit}>
 					<Modal.Body>
-						<div className="form-group">
+						<div className="form-group mt-1">
 							<label>Nombre</label>
 							<input
 								type="text"
@@ -118,7 +123,7 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 								onChange={handleChange}
 							/>
 						</div>
-						<div className="form-group">
+						<div className="form-group mt-1">
 							<label>Precio</label>
 							<input
 								type="number"
@@ -126,9 +131,10 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 								className="form-control"
 								value={formValue.precio}
 								onChange={handleChange}
+								required
 							/>
 						</div>
-						<div className="form-group">
+						<div className="form-group mt-1">
 							<label>Detalle</label>
 							<textarea
 								type="text"
@@ -136,10 +142,11 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 								className="form-control"
 								value={formValue.detalle}
 								onChange={handleChange}
+								required
 							/>
 						</div>
 
-						<div className="form-group">
+						<div className="form-group mt-1">
 							<label>Categoria</label>
 							<select
 								className="form-select"
@@ -149,7 +156,9 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 								onChange={handleChange}
 								required
 							>
-								<option defaultValue="">Elige una Categoria</option>
+								<option value="" disabled hidden>
+									Elige una categoría
+								</option>
 								<option value="CLASICA">CLASICAS</option>
 								<option value="SIN TAC">SIN TAC</option>
 								<option value="ESPECIALIDAD DE LA CASA">
@@ -158,17 +167,38 @@ const ModalPizzas = ({ show, handleClose, actualizar }) => {
 								<option value="A LA PIEDRA">A LA PIEDRA</option>
 							</select>
 						</div>
-
-						<div className="form-check">
+						<div className="form-group mt-1">
+							<label>
+								Imagen
+								<span className="small"> (URL - Recomendado 500 x 500px)</span>
+							</label>
+							<input
+								type="text"
+								name="img"
+								className="form-control"
+								value={formValue.img}
+								onChange={handleChange}
+								required
+							/>
+							<small>
+								<ul>
+									<li>
+										Por defecto colocar:{" "}
+										<em>https://i.imgur.com/dAe6kfs.png</em>
+									</li>
+								</ul>
+							</small>
+						</div>
+						<div className="form-check mt-3">
+							<label>Publicada</label>
 							<input
 								className="form-check-input"
 								type="checkbox"
-								checked={formValue.disponible}
-								value={formValue.disponible}
+								checked={formValue.publicado}
+								value={formValue.publicado}
 								onChange={handleChange}
-								name="disponible"
+								name="publicado"
 							/>
-							<label>Disponible</label>
 						</div>
 					</Modal.Body>
 					<Modal.Footer>

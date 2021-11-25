@@ -56,33 +56,37 @@ const ShopCard = ({ pizzas }) => {
 						className="col d-flex justify-content-between align-items-center flex-column"
 						key={pizza._id}
 					>
-						<div className="card card-pizza ">
-							<img
-								src={pizza.img}
-								className="card-img-top"
-								alt={pizza.nombre}
-							/>
-							<div className="card-body h-100 ">
-								<div className="row">
-									<div className="col">
-										<h5 className="card-title text-start">{pizza.nombre}</h5>
+						<div>
+							<div className="card card-pizza ">
+								<img
+									src={pizza.img}
+									className="card-img-top"
+									alt={pizza.nombre}
+								/>
+								<div className="card-body h-100 ">
+									<div className="row">
+										<div className="col">
+											<h5 className="card-title text-start">{pizza.nombre}</h5>
+										</div>
+										<div className="col">
+											<h5 className="card-title text-end">${pizza.precio}</h5>
+										</div>
 									</div>
-									<div className="col">
-										<h5 className="card-title text-end">${pizza.precio}</h5>
-									</div>
-								</div>
 
-								<div className="card-footer bg-white p-0">
-									<p className="card-text text-center mt-3">{pizza.detalle}</p>
+									<div className="card-footer bg-white p-0">
+										<p className="card-text text-center mt-3">
+											{pizza.detalle}
+										</p>
+									</div>
 								</div>
 							</div>
+							<button
+								className="btn btn-color col-12 text-white mt-2"
+								onClick={() => guardarPizza(pizza)}
+							>
+								+ AÑADIR AL CARRITO
+							</button>
 						</div>
-						<button
-							className="btn btn-color col-12 text-white mt-2"
-							onClick={() => guardarPizza(pizza)}
-						>
-							+ AÑADIR AL CARRITO
-						</button>
 					</div>
 				))}
 			</div>

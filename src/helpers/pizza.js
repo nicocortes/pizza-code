@@ -1,7 +1,7 @@
 const url = "https://pizza-code.herokuapp.com/api/pizzas";
 
-export const getPizzas = async (desde) => {
-	const resp = await fetch(`${url}?desde=${desde}`, {
+export const getPizzas = async (categoria, desde) => {
+	const resp = await fetch(`${url}/categoria/${categoria}?desde=${desde}`, {
 		method: "GET",
 
 		headers: {

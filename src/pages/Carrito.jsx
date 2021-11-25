@@ -90,9 +90,14 @@ const Carrito = () => {
 					if (respuesta.errors) {
 						return window.alert(respuesta.errors[0].msg);
 					}
-					if (respuesta.msg) {
-						window.alert(respuesta.msg);
-					}
+					Swal.fire({
+						icon: "success",
+						title: "Muchas gracias!",
+						text: "Tu pedido se ha realizado con éxito!",
+					});
+					setTimeout(() => {
+						history.push("/micuenta");
+					}, 1000);
 				});
 			}
 		} else {

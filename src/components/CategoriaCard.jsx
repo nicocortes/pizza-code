@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import ShopContext from "../components/ShopContext";
 import sintacc from "../assets/sintacc.jpeg";
 import clasicas from "../assets/clasicas.jpg";
 import especialidad from "../assets/especialidad.jpeg";
 import piedra from "../assets/piedra.png";
 
 const CategoriaCard = () => {
+	const { setShop } = useContext(ShopContext);
 	return (
 		<div className="container">
 			<div className="row ">
 				<div className="col-12 col-md-6 mb-3 ">
-					<Link to="/shop">
+					<Link to="/shop" onClick={() => setShop("CLASICA")}>
 						<div className="card categorias-card ">
 							<img
 								src={clasicas}
@@ -30,7 +32,7 @@ const CategoriaCard = () => {
 					</Link>
 				</div>
 				<div className="col-12 col-md-6 mb-3 ">
-					<Link to="/shop">
+					<Link to="/shop" onClick={() => setShop("SIN TAC")}>
 						<div className="card categorias-card ">
 							<img
 								src={sintacc}
@@ -52,7 +54,7 @@ const CategoriaCard = () => {
 			</div>
 			<div className="row">
 				<div className="col-12 col-md-6 mb-3">
-					<Link to="/shop">
+					<Link to="/shop" onClick={() => setShop("ESPECIALIDAD DE LA CASA")}>
 						<div className="card  categorias-card ">
 							<img
 								src={especialidad}
@@ -72,7 +74,7 @@ const CategoriaCard = () => {
 					</Link>
 				</div>
 				<div className="col-12 col-md-6">
-					<Link to="/shop">
+					<Link to="/shop" onClick={() => setShop("A LA PIEDRA")}>
 						<div className="card  categorias-card ">
 							<img
 								src={piedra}

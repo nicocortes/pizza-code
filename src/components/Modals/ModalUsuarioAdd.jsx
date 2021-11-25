@@ -9,7 +9,6 @@ const ModalUsuarioAdd = ({ show, handleClose, actualizar }) => {
 	const [formValue, setFormValue] = useState({
 		nombre: "",
 		email: "",
-		password: "",
 		rol: "",
 	});
 
@@ -17,7 +16,6 @@ const ModalUsuarioAdd = ({ show, handleClose, actualizar }) => {
 		setFormValue({
 			nombre: "",
 			email: "",
-			password: "",
 			rol: "",
 		});
 		if (actualizar) {
@@ -25,7 +23,6 @@ const ModalUsuarioAdd = ({ show, handleClose, actualizar }) => {
 				setFormValue({
 					nombre: respuesta.usuario.nombre,
 					email: respuesta.usuario.email,
-					password: respuesta.usuario.password,
 					rol: respuesta.usuario.rol,
 				});
 			});
@@ -57,7 +54,6 @@ const ModalUsuarioAdd = ({ show, handleClose, actualizar }) => {
 				setFormValue({
 					nombre: "",
 					email: "",
-					password: "",
 					rol: "",
 				});
 				handleClose();
@@ -75,7 +71,6 @@ const ModalUsuarioAdd = ({ show, handleClose, actualizar }) => {
 				setFormValue({
 					nombre: "",
 					email: "",
-					password: "",
 					rol: "",
 				});
 				handleClose();
@@ -114,18 +109,6 @@ const ModalUsuarioAdd = ({ show, handleClose, actualizar }) => {
 								placeholder="pedromartinez@gmail.com"
 								required
 								value={formValue.email}
-								onChange={handleChange}
-							/>
-						</div>
-						<div className="form-group">
-							<label>Password</label>
-							<input
-								type="password"
-								name="password"
-								className="form-control"
-								autoComplete="off"
-								required
-								value={formValue.password}
 								onChange={handleChange}
 							/>
 						</div>
